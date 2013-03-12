@@ -12,5 +12,9 @@ To start a web server for the application, run:
 
     lein ring server
 
+Entry-point will be available on:
+
+    http://localhost:3000/restaurants
+
 ## License
 

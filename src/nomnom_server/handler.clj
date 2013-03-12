@@ -9,26 +9,42 @@
    [clojure.data.json :as json]))
 
 (defn with-links [rel link & rest]
-
-  {:_links {rel link}}
+  {:_links {rel {:href link}}}
   )
 
 (defn list-restaurants
   []
-  (reduce #(conj %1 {:name (%2 :name)} )  []  [])
-)
+  (reduce
+   #(conj %1 (merge{:name (%2 :name)}
+                   (with-links :self (str "/restaurants/" (%2 :_id)))))
+   []
+   db/database)
+  )
+
+(defn list-restaurant-menu
+  [id]
+  (let [intId (Integer/parseInt id)
+        restaurant (first (filter #(= (:_id %) intId) db/database))
+        menu (:menu restaurant)]
+    {:name (restaurant :name)
+     :menu (map (fn [entry] {:name (entry :name) :image (entry :image)}) menu)
+     }
+    ))
+
 (defn all-restarants []
   {:status 200
    :headers {"Content-Type" "application/json"}
    :body {:restaurants
-          [(merge {:name "Kokkari"}
-                  (with-links "self" "/restaurants/1"))
-           (merge {:name "Pizza Orgasmica"}
-                  (with-links "self" "/restaurants/2"))
-           (merge {:name "Palominos"}
-                  (with-links "self" "/restaurants/3"))
-           (merge {:name "Bocadillos"}
-                  (with-links "self" "/restaurants/4"))]}})
+          (list-restaurants)}})
+
+(defn handle-restaurant
+  [id]
+  {:status 200
+   :headers {"Content-Type" "application/json"}
+   :body (list-restaurant-menu id)}
+  )
+
+;; TODO consider hal-builder to simplify this
 (defroutes handler
   (context "/restaurants" []
            (defroutes restaurants-routes
@@ -36,7 +52,7 @@
              (context
               "/:id" [id]
               (defroutes restaurant-routes
-                (GET "/" []  {:body {"name" "Kokkari" "dishes" [1 {"picture" "1.jpg"}] }}))))
+                (GET "/" []  (handle-restaurant id)))))
            ))
 
 (def app

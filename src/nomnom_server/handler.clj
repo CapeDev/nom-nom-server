@@ -15,7 +15,7 @@
 (defn list-restaurants
   []
   (reduce
-   #(conj %1 (merge{:name (%2 :name)}
+   #(conj %1 (merge {:name (%2 :name) :rating (%2 :rating)}
                    (with-links :self (str "/restaurants/" (%2 :_id)))))
    []
    db/database)

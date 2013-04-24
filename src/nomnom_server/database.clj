@@ -8,10 +8,10 @@
     :menu [{:_id 1
             :name "baklava"
             :image "baklava.jpg"}
-           {:_id 1
+           {:_id 2
             :name "lamb chops"
             :image "lamb_chops.jpg"}
-           {:_id 1
+           {:_id 3
             :name "moussaka"
             :image "moussaka.jpg"}]
     
@@ -21,14 +21,14 @@
     :name "Pizza Orgasmica"
     :rating "2"
     :menu [{:_id 1
-            :name "baklava"
-            :image "baklava.jpg"}
-           {:_id 1
-            :name "lamb chops"
-            :image "lamb_chops.jpg"}
-           {:_id 1
-            :name "moussaka"
-            :image "moussaka.jpg"}]
+            :name "chicago deep dish pizza"
+            :image "pizza.jpg"}
+           {:_id 2
+            :name "thin pizza"
+            :image "thin_pizza.jpg"}
+           {:_id 3
+            :name "Peperroni"
+            :image "peperroni.jpg"}]
     
     }
    {
@@ -36,30 +36,14 @@
     :name "Palomino's"
     :rating "3"
     :menu [{:_id 1
-            :name "baklava"
-            :image "baklava.jpg"}
-           {:_id 1
-            :name "lamb chops"
-            :image "lamb_chops.jpg"}
-           {:_id 1
-            :name "moussaka"
-            :image "moussaka.jpg"}]
+            :name "soup"
+            :image "soup.jpg"}
+           {:_id 2
+            :name "gorgonzola fries"
+            :image "gorgonzola_fries.jpg"}
+           {:_id 3
+            :name "creme broulet"
+            :image "creme_broulet.jpg"}]
     
     }
-   {
-    :_id 4
-    :name "Bocadillos"
-    :rating "4"
-    :menu [{:_id 1
-            :name "baklava"
-            :image "baklava.jpg"}
-           {:_id 1
-            :name "lamb chops"
-            :image "lamb_chops.jpg"}
-           {:_id 1
-            :name "moussaka"
-            :image "moussaka.jpg"}]
-    
-    }
-   
    ])
